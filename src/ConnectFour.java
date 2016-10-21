@@ -78,8 +78,10 @@ public class ConnectFour {
      * @return Opponent color.
      */
     public static Color getOpposite(Color color) {
-        // TODO You have to write this.
-        return null;
+        if (color == COMPUTER) {
+            return HUMAN;
+        }
+        return COMPUTER;
     }
 
     /**
