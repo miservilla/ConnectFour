@@ -31,7 +31,11 @@ public class ConnectFour {
      * @param column Column in which to drop the piece.
      */
     public static void dropPiece(Color[][] board, Color color, int column) {
-        // TODO You have to write this.
+        for (int row = 0; row < ROWS; row++){
+            if (board[row][column] == NONE){
+                board[row][column] = color;
+            }
+        }
     }
 
     /**
@@ -40,8 +44,13 @@ public class ConnectFour {
      * @return True if board is full, false if not.
      */
     public static boolean isFull(Color[][] board) {
-        // TODO You have to write this.
-        return false;
+        for(int row = 0; row < ROWS; row++) {
+            for (int col = 0; col < COLUMNS; col++) {
+                if (board[row][col] == NONE);
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -53,7 +62,11 @@ public class ConnectFour {
      * @return true if column is neither off the edge of the board nor full.
      */
     public static boolean isLegal(Color[][] board, int column) {
-        // TODO You have to write this.
+        for (int row = 0; row < ROWS; row++){
+            if (column < ROWS && column > 0 && board[row][column] == NONE){
+                return true;
+            }
+        }
         return false;
     }
 
