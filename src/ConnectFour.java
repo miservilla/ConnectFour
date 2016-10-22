@@ -44,12 +44,10 @@ public class ConnectFour {
      * @return True if board is full, false if not.
      */
     public static boolean isFull(Color[][] board) {
-        for(int row = 0; row < ROWS; row++) {
-            for (int col = 0; col < COLUMNS; col++) {
-                if (board[row][col] == NONE);
-                return false;
+        for (int col = 0; col < COLUMNS; col++) {
+            if (board[ROWS-1][col] == NONE);
+            return false;
             }
-        }
         return true;
     }
 
