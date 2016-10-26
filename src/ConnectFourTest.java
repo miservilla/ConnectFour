@@ -255,9 +255,9 @@ public class ConnectFourTest {
     public static void main(String[] args) {
 //        clearCounts();
 //        testConstants();
-//        testGetOpposite();
-//        testDropPiece();
-//        testIsLegal();
+        testGetOpposite();
+        testDropPiece();
+        testIsLegal();
         testIsFull();
 //        testHorizontalWinner();
 //        testVerticalWinner();

@@ -31,7 +31,7 @@ public class ConnectFour {
      * @param column Column in which to drop the piece.
      */
     public static void dropPiece(Color[][] board, Color color, int column) {
-        for (int row = 0; row < ROWS-1; row++){
+        for (int row = 0; row < ROWS; row++){
             if (board[row][column] == NONE){
                 board[row][column] = color;
                 break;
@@ -63,7 +63,7 @@ public class ConnectFour {
      */
     public static boolean isLegal(Color[][] board, int column) {
         for (int row = 0; row < ROWS; row++){
-            if (column < ROWS && column > 0 && board[row][column] == NONE){
+            if (column < COLUMNS && column >= 0 && board[row][column] == NONE){
                 return true;
             }
         }
