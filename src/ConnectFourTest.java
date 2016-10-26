@@ -253,24 +253,24 @@ public class ConnectFourTest {
     }
 
     public static void main(String[] args) {
-        clearCounts();
-        testConstants();
-        testGetOpposite();
-        testDropPiece();
-        testIsLegal();
+//        clearCounts();
+//        testConstants();
+//        testGetOpposite();
+//        testDropPiece();
+//        testIsLegal();
         testIsFull();
-        testHorizontalWinner();
-        testVerticalWinner();
-        testVerticalWinner2();
-        testDiagonalWinner1();
-        testDiagonalWinner2();
-        testUndoDrop();
-        testMax0();
-        testMax1();
-        testMax2();
-        testMin3();
-        testBestMoveForComputer();
-        testDeepSearch();
+//        testHorizontalWinner();
+//        testVerticalWinner();
+//        testVerticalWinner2();
+//        testDiagonalWinner1();
+//        testDiagonalWinner2();
+//        testUndoDrop();
+//        testMax0();
+//        testMax1();
+//        testMax2();
+//        testMin3();
+//        testBestMoveForComputer();
+//        testDeepSearch();
 
         System.out.println("Passed " + correctTests + " out of " + totalTests + " tests.");
     }

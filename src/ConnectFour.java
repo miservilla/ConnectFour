@@ -31,9 +31,10 @@ public class ConnectFour {
      * @param column Column in which to drop the piece.
      */
     public static void dropPiece(Color[][] board, Color color, int column) {
-        for (int row = 0; row < ROWS; row++){
+        for (int row = 0; row < ROWS-1; row++){
             if (board[row][column] == NONE){
                 board[row][column] = color;
+                break;
             }
         }
     }
@@ -45,9 +46,10 @@ public class ConnectFour {
      */
     public static boolean isFull(Color[][] board) {
         for (int col = 0; col < COLUMNS; col++) {
-            if (board[ROWS-1][col] == NONE);
-            return false;
+            if (board[ROWS - 1][col] == NONE) {
+                return false;
             }
+        }
         return true;
     }
 
