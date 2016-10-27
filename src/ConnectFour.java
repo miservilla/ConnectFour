@@ -107,8 +107,25 @@ public class ConnectFour {
      */
     public static Color findLocalWinner(Color[][] board, int r, int c,
                                         int rowOffset, int colOffset) {
-        // TODO You have to write this.
-        return null;
+        if ((r < 3 && rowOffset == -1) || (r > ROWS - 4 && rowOffset == 1) ||
+                (c < 3 && colOffset == -1) || (c > COLUMNS - 4 &&
+                colOffset == 1)){
+            return NONE;
+        }
+        int counter = 0;
+        int row = r;
+        int col = c;
+        for (int i = 0; i < 3; i++) {
+            row += rowOffset;
+            col += colOffset;
+            if (board[row][col] == board[r][c]){
+                counter++;
+                if (counter == 3){
+                    return board[r][c];
+                }
+            }
+        }
+        return NONE;
     }
 
     /**
@@ -119,9 +136,43 @@ public class ConnectFour {
      * winner yet.
      */
     public static Color findWinner(Color[][] board) {
-        // TODO You have to write this.
-        // HINT: You should call the findLocalWinner method to help you
-        return null;
+        for (int i = 0; i < ROWS - 1; i++) {
+            for (int j = 0; j < COLUMNS; j++) {
+                Color result = findLocalWinner(board, i, j, 0, 1);
+                if (result != NONE){
+                    return result;
+                }
+                result = findLocalWinner(board, i, j, 0, -1);
+                if (result != NONE){
+                    return result;
+                }
+                result = findLocalWinner(board, i, j, 1, 0);
+                if (result != NONE){
+                    return result;
+                }
+                result = findLocalWinner(board, i, j, -1, 0);
+                if (result != NONE){
+                    return result;
+                }
+                result = findLocalWinner(board, i, j, 1, 1);
+                if (result != NONE){
+                    return result;
+                }
+                result = findLocalWinner(board, i, j, 1, -1);
+                if (result != NONE){
+                    return result;
+                }
+                result = findLocalWinner(board, i, j, -1, 1);
+                if (result != NONE){
+                    return result;
+                }
+                result = findLocalWinner(board, i, j, -1, -1);
+                if (result != NONE){
+                    return result;
+                }
+            }
+        }
+        return NONE;
     }
 
     /**
