@@ -259,18 +259,18 @@ public class ConnectFourTest {
 //        testDropPiece();
 //        testIsLegal();
 //        testIsFull();
-        testHorizontalWinner();
-        testVerticalWinner();
-        testVerticalWinner2();
-        testDiagonalWinner1();
-        testDiagonalWinner2();
+//        testHorizontalWinner();
+//        testVerticalWinner();
+//        testVerticalWinner2();
+//        testDiagonalWinner1();
+//        testDiagonalWinner2();
 //        testUndoDrop();
 //        testMax0();
 //        testMax1();
 //        testMax2();
 //        testMin3();
 //        testBestMoveForComputer();
-//        testDeepSearch();
+        testDeepSearch();
 
         System.out.println("Passed " + correctTests + " out of " + totalTests + " tests.");
     }

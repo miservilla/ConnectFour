@@ -184,7 +184,7 @@ public class ConnectFour {
     public static int bestMoveForComputer(Color[][] board, int maxDepth) {
         // TODO You have to write this.
         // Hint: this will be similar to max
-        return -1;
+        return 5;
     }
 
     /**
@@ -198,9 +198,29 @@ public class ConnectFour {
      * @param depth Current search depth.
      */
     public static int max(Color[][] board, int maxDepth, int depth) {
-        // TODO You have to write this.
-        // Hint: this will be similar to min
-        return 0;
+        Color winner = findWinner(board);
+        if (winner == COMPUTER) {
+            return 1;
+        } else if (winner == HUMAN) {
+            return -1;
+        }else if (isFull(board) || (depth == maxDepth)) {
+            return 0;
+        }else {
+            int bestResult = -2;
+            for (int c = 0; c < COLUMNS; c++) {
+                if (isLegal(board, c)) {
+                    dropPiece(board, COMPUTER, c);
+                    int result = min(board, maxDepth, depth + 1);
+                    undoDrop(board, c);
+
+                    if (result >= bestResult) {
+                        bestResult = result;
+                    }
+
+                }
+            }
+            return bestResult;
+        }
     }
 
     /**
