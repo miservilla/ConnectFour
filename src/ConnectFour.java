@@ -31,7 +31,7 @@ public class ConnectFour {
      * @param column Column in which to drop the piece.
      */
     public static void dropPiece(Color[][] board, Color color, int column) {
-        for (int row = 0; row < ROWS; row++){
+        for (int row = 0; row < ROWS ; row++){
             if (board[row][column] == NONE){
                 board[row][column] = color;
                 break;
@@ -182,10 +182,23 @@ public class ConnectFour {
      * @return Column index for computer player's best move.
      */
     public static int bestMoveForComputer(Color[][] board, int maxDepth) {
-        // TODO You have to write this.
-        // Hint: this will be similar to max
-        return 5;
-    }
+            int bestResult = 0;
+            for (int c = 0; c < COLUMNS; c++) {
+                if (isLegal(board, c)) {
+                    dropPiece(board, COMPUTER, c);
+                    int result = max(board, maxDepth, 0);
+                    undoDrop(board, c);
+                    if (result > bestResult) {
+                        return c;
+                    } else if (result == bestResult){
+                        return c;
+                    }
+
+                }
+            }
+            return 0;
+        }
+
 
     /**
      * Returns the value of board with computer to move:
