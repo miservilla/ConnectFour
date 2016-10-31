@@ -21,6 +21,22 @@ public class ConnectFour {
     /** Color for blank spaces. */
     public static final Color NONE = Color.WHITE;
 
+    public static void printBoard(Color board[][]) {
+        for (int i = ROWS - 1; i >= 0; i--) {
+            System.out.println();
+            for (int j = 0; j < COLUMNS; j++) {
+                if (board[i][j] == NONE) {
+                    System.out.print(" - ");
+                } else if (board[i][j] == HUMAN) {
+                    System.out.print(" H ");
+                } else {
+                    System.out.print(" C ");
+                }
+            }
+        }
+        System.out.println();
+    }
+
 
     /**
      * Drops a piece of given Color in column.  Modifies the board
@@ -182,22 +198,42 @@ public class ConnectFour {
      * @return Column index for computer player's best move.
      */
     public static int bestMoveForComputer(Color[][] board, int maxDepth) {
-            int bestResult = 0;
-            for (int c = 0; c < COLUMNS; c++) {
-                if (isLegal(board, c)) {
-                    dropPiece(board, COMPUTER, c);
-                    int result = max(board, maxDepth, 0);
-                    undoDrop(board, c);
-                    if (result > bestResult) {
-                        return c;
-                    } else if (result == bestResult){
-                        return c;
-                    }
-
+        int computerWinMove = 0;
+        int computerBlockMove = 0;
+        int neitherWinBlockMove = 0;
+        for (int c = 0; c < COLUMNS; c++) {
+            dropPiece(board, COMPUTER, c);
+            printBoard(board);
+            int result = min(board, maxDepth, 0);
+            undoDrop(board, c);
+            if (result == 0 || result == 1){
+                System.out.println("result  " + result + ", " + c);
+            } else {
+                System.out.println("result " + result + ", " + c);
+            }
+            if (result == 0 || result == 1) {
+                if (result == 1){
+                    computerWinMove = c;
+                } else {
+                    computerBlockMove = c;
+                }
+            } else {
+                if (true == isLegal(board, c)){
+                    neitherWinBlockMove = c;
                 }
             }
-            return 0;
         }
+        if (computerWinMove != 0) {
+            System.out.println(computerWinMove);
+            return computerWinMove;
+        } else if (computerBlockMove != 0){
+            System.out.println(computerBlockMove);
+            return computerBlockMove;
+        } else {
+            System.out.println(neitherWinBlockMove);
+            return neitherWinBlockMove;
+        }
+    }
 
 
     /**
@@ -212,6 +248,7 @@ public class ConnectFour {
      */
     public static int max(Color[][] board, int maxDepth, int depth) {
         Color winner = findWinner(board);
+        printBoard(board);
         if (winner == COMPUTER) {
             return 1;
         } else if (winner == HUMAN) {
@@ -237,7 +274,7 @@ public class ConnectFour {
     }
 
     /**
-     * Returns the value of board with human to move: 
+     * Returns the value of board with human to move:
      *    1 if human cannot avoid a loss,
      *    -1 if human can force a win,
      *     0 otherwise.
@@ -254,6 +291,7 @@ public class ConnectFour {
 
         // First, see if anyone is winning already
         Color winner = findWinner(board);
+        printBoard(board);
         if (winner == COMPUTER) {
             // computer is winning, so human is stuck
             return 1;
