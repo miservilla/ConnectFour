@@ -21,22 +21,6 @@ public class ConnectFour {
     /** Color for blank spaces. */
     public static final Color NONE = Color.WHITE;
 
-    public static void printBoard(Color board[][]) {
-        for (int i = ROWS - 1; i >= 0; i--) {
-            System.out.println();
-            for (int j = 0; j < COLUMNS; j++) {
-                if (board[i][j] == NONE) {
-                    System.out.print(" - ");
-                } else if (board[i][j] == HUMAN) {
-                    System.out.print(" H ");
-                } else {
-                    System.out.print(" C ");
-                }
-            }
-        }
-        System.out.println();
-    }
-
 
     /**
      * Drops a piece of given Color in column.  Modifies the board
@@ -202,36 +186,28 @@ public class ConnectFour {
         int computerBlockMove = 0;
         int neitherWinBlockMove = 0;
         for (int c = 0; c < COLUMNS; c++) {
+            if (!isLegal(board, c)) continue;
             dropPiece(board, COMPUTER, c);
-            printBoard(board);
             int result = min(board, maxDepth, 0);
             undoDrop(board, c);
-            if (result == 0 || result == 1){
-                System.out.println("result  " + result + ", " + c);
-            } else {
-                System.out.println("result " + result + ", " + c);
-            }
             if (result == 0 || result == 1) {
-                if (result == 1){
+                if (result == 1) {
                     computerWinMove = c;
                 } else {
                     computerBlockMove = c;
                 }
             } else {
-                if (true == isLegal(board, c)){
+//                if (true == isLegal(board, c)) {
                     neitherWinBlockMove = c;
                 }
             }
-        }
+//        }
         if (computerWinMove != 0) {
-            System.out.println(computerWinMove);
             return computerWinMove;
-        } else if (computerBlockMove != 0){
-            System.out.println(computerBlockMove);
+        } else if (computerBlockMove != 0) {
             return computerBlockMove;
         } else {
-            System.out.println(neitherWinBlockMove);
-            return neitherWinBlockMove;
+                return neitherWinBlockMove;
         }
     }
 
@@ -248,7 +224,6 @@ public class ConnectFour {
      */
     public static int max(Color[][] board, int maxDepth, int depth) {
         Color winner = findWinner(board);
-        printBoard(board);
         if (winner == COMPUTER) {
             return 1;
         } else if (winner == HUMAN) {
@@ -291,7 +266,6 @@ public class ConnectFour {
 
         // First, see if anyone is winning already
         Color winner = findWinner(board);
-        printBoard(board);
         if (winner == COMPUTER) {
             // computer is winning, so human is stuck
             return 1;
